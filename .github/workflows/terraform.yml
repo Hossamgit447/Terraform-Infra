@@ -38,11 +38,11 @@ jobs:
           terraform_version: 1.8.0
 
       - name: Terraform Init
-        run: terraform init -backend-config="key=${{ github.event.inputs.environment }}.tfstate"
+        run: terraform init 
 
       - name: Terraform Plan
         if: ${{ github.event.inputs.action == 'plan' }}
-        run: terraform plan -var="env=${{ github.event.inputs.environment }}" -var="vpc_cidr = "10.0.0.0/16"
+        run: terraform plan -var="env=${{ github.event.inputs.environment }}" 
 
       - name: Terraform Apply
         if: ${{ github.event.inputs.action == 'apply' }}
