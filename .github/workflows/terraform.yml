@@ -23,6 +23,9 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/fintech/prod
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,9 +44,8 @@ jobs:
         run: terraform init 
 
       - name: Terraform Plan
-        working-directory: projects/fintech/prod
         if: ${{ github.event.inputs.action == 'plan' }}
-        run:  terraform plan -var-file="projects/fintech/${{ github.event.inputs.environment }}/${{ github.event.inputs.environment }}.tfvars"
+        run:  terraform plan -var-file="${{ github.event.inputs.environment }}.tfvars"  
 
 
 
