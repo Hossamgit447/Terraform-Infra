@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: projects/fintech/prod
+        working-directory: projects/fintech/${{ github.event.inputs.environment }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
