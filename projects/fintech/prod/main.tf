@@ -4,7 +4,7 @@ module "vpc" {
   env      = var.env
 }
 module "db_password_secret" {
-  source      = "git::https://github.com/<your-org>/terraform-modules.git//secret-manager?ref=main"
+  source      = "git::https://github.com/Hossamgit447/terraform-modules.git//secret_manager?ref=main"
   name        = var.name
   description = "Secret container for MyApp DB password"
 }
