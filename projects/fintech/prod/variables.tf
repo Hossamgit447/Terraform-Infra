@@ -11,3 +11,7 @@ variable "env" {
   description = "defines the environment"
   type        = string
 }
+variable "name" {
+  description = "The name of the secret in AWS Secrets Manager"
+  type        = string
+}
