@@ -3,3 +3,8 @@ module "vpc" {
   vpc_cidr = var.vpc_cidr
   env      = var.env
 }
+module "db_password_secret" {
+  source      = "git::https://github.com/<your-org>/terraform-modules.git//secret-manager?ref=main"
+  name        = var.name
+  description = "Secret container for MyApp DB password"
+}

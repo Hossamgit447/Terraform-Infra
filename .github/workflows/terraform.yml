@@ -51,8 +51,8 @@ jobs:
 
       - name: Terraform Apply
         if: ${{ github.event.inputs.action == 'apply' }}
-        run: terraform apply -auto-approve -var="env=${{ github.event.inputs.environment }}"
+        run: terraform apply -auto-approve -var="env=${{ github.event.inputs.environment }}" -var-file="${{ github.event.inputs.environment }}.tfvars"
 
       - name: Terraform Destroy
         if: ${{ github.event.inputs.action == 'destroy' }}
-        run: terraform destroy -auto-approve -var="env=${{ github.event.inputs.environment }}"
+        run: terraform destroy -auto-approve -var="env=${{ github.event.inputs.environment }}" -var-file="${{ github.event.inputs.environment }}.tfvars"
