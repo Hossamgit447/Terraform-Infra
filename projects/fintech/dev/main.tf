@@ -5,7 +5,7 @@ module "network" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/network?ref=master"
 
   env    = var.env
-  region = var.region
+  region = var.aws_region
 }
 
 # ---------------------

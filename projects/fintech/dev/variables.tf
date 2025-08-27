@@ -1,4 +1,4 @@
-variable "region" {
+variable "aws_region" {
   description = "AWS region"
   type        = string
   default     = "us-east-1"
@@ -18,4 +18,7 @@ variable "name" {
 
 variable "azs" {
   type = list(string)
+}
+variable "vpc_cidr" {
+  type = string
 }
