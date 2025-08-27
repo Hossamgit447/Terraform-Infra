@@ -1,16 +1,3 @@
-terraform {
-  required_version = ">= 1.5.0"
-
-  backend "s3" {
-    bucket = "your-tf-backend-bucket"
-    key    = "infra/${var.env}/terraform.tfstate"
-    region = var.region
-  }
-}
-
-provider "aws" {
-  region = var.region
-}
 
 # ---------------------
 # Network Module
