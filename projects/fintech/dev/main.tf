@@ -3,7 +3,7 @@
 # ---------------------
 module "network" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/network?ref=master"
-
+  enviroment= var.env
   aws_region = var.aws_region
   vpc_cidr   = var.vpc_cidr
   azs        = var.azs
