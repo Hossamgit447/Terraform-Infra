@@ -40,7 +40,7 @@ module "node_group" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks?ref=master"
 
   cluster_name = module.eks.cluster_name
-  node_role_arn = module.iam.eks.node.role
+  node_role_arn = module.iam.eks_node_role
   subnet_ids   = module.network.private_subnet_ids
 
   desired_size = var.node_group_desired_size
