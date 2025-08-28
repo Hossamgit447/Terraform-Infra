@@ -34,3 +34,19 @@ module "db_password_secret" {
   name        = var.name
   description = "Secret container for MyApp DB password"
 }
+
+
+module "node_group" {
+  source = "git::https://github.com/your-org/modules.git//node_group"
+
+  cluster_name = module.eks.cluster_name
+  node_role_arn = module.eks.node_role
+  subnet_ids   = module.network.private_subnet_ids
+
+  desired_size = var.node_group_desired_size
+  min_size     = var.node_group_min_size
+  max_size     = var.node_group_max_size
+
+  instance_types = var.node_group_instance_types
+  env            = var.env
+}
