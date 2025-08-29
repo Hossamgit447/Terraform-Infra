@@ -37,7 +37,4 @@ variable "node_group_instance_types" {
   type        = list(string)
   default     = ["t2.medium"]
 }
-variable "node_role_arn" {
-  description = "node role arn"
-  type = string
-}
+
