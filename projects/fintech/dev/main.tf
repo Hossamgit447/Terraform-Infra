@@ -37,7 +37,7 @@ module "db_password_secret" {
 
 
 module "node_group" {
-  source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks_node?ref=master"
+  source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks?ref=master"
 
   cluster_name = module.eks.cluster_name
   node_role_arn = module.iam.eks_node_role
