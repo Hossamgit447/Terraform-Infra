@@ -37,11 +37,11 @@ module "db_password_secret" {
 
 
 module "node_group" {
-  source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks?ref=master"
+  source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks-nodegroups?ref=master"
 
-  cluster_name = module.eks.cluster_name
+  cluster_name  = module.eks.cluster_name
   node_role_arn = module.iam.eks_node_role
-  subnet_ids   = module.network.private_subnet_ids
+  subnet_ids    = module.network.private_subnet_ids
 
   desired_size = var.node_group_desired_size
   min_size     = var.node_group_min_size

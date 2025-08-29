@@ -19,22 +19,22 @@ variable "azs" {
   type = list(string)
 }
 variable "node_group_desired_size" {
-  type        = number
-  default     = 2
+  type    = number
+  default = 2
 }
 
 variable "node_group_min_size" {
-  type        = number
-  default     = 1
+  type    = number
+  default = 1
 }
 
 variable "node_group_max_size" {
-  type        = number
-  default     = 3
+  type    = number
+  default = 3
 }
 
 variable "node_group_instance_types" {
-  type        = list(string)
-  default     = ["t2.medium"]
+  type    = list(string)
+  default = ["t2.medium"]
 }
 
