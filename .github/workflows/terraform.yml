@@ -65,7 +65,7 @@ jobs:
 
       # Capture Terraform outputs (like cluster_name, region)
       - name: Capture Terraform outputs
-        if: ${{ github.event.inputs.action == 'apply' }}
+        if: ${{ github.event.inputs.action == 'plan' }}
         id: tf_outputs
         run: |
           echo "CLUSTER_NAME=$(terraform output -raw cluster_name)" >> $GITHUB_ENV
@@ -73,7 +73,7 @@ jobs:
 
       # Update kubeconfig so kubectl can talk to cluster
       - name: Update kubeconfig
-        if: ${{ github.event.inputs.action == 'apply' }}
+        if: ${{ github.event.inputs.action == 'plan' }}
         run: |
           aws eks update-kubeconfig \
             --region ${{ env.CLUSTER_REGION }} \
@@ -81,7 +81,7 @@ jobs:
 
       # Quick check that cluster is up and nodes are joining
       - name: Verify EKS cluster
-        if: ${{ github.event.inputs.action == 'apply' }}
+        if: ${{ github.event.inputs.action == 'plan' }}
         run: |
           kubectl cluster-info
           kubectl get nodes -o wide || true
