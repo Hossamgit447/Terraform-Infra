@@ -56,3 +56,32 @@ jobs:
       - name: Terraform Destroy
         if: ${{ github.event.inputs.action == 'destroy' }}
         run: terraform destroy -auto-approve -var="env=${{ github.event.inputs.environment }}" -var-file="${{ github.event.inputs.environment }}.tfvars"
+      - name: Install kubectl
+        if: ${{ github.event.inputs.action == 'apply' }}
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+
+      # Capture Terraform outputs (like cluster_name, region)
+      - name: Capture Terraform outputs
+        if: ${{ github.event.inputs.action == 'apply' }}
+        id: tf_outputs
+        run: |
+          echo "CLUSTER_NAME=$(terraform output -raw cluster_name)" >> $GITHUB_ENV
+          echo "CLUSTER_REGION=$(terraform output -raw cluster_region 2>/dev/null || echo ${{ secrets.AWS_REGION }})" >> $GITHUB_ENV
+
+      # Update kubeconfig so kubectl can talk to cluster
+      - name: Update kubeconfig
+        if: ${{ github.event.inputs.action == 'apply' }}
+        run: |
+          aws eks update-kubeconfig \
+            --region ${{ env.CLUSTER_REGION }} \
+            --name ${{ env.CLUSTER_NAME }}
+
+      # Quick check that cluster is up and nodes are joining
+      - name: Verify EKS cluster
+        if: ${{ github.event.inputs.action == 'apply' }}
+        run: |
+          kubectl cluster-info
+          kubectl get nodes -o wide || true
