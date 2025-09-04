@@ -6,7 +6,7 @@ module "network" {
   env= var.env
   aws_region = var.aws_region
   vpc_cidr   = var.vpc_cidr
-  availability_zone   = var.azs
+  azs   = var.azs
 }
 
 # ---------------------
