@@ -34,7 +34,13 @@ module "db_password_secret" {
   name        = var.name
   description = "Secret container for MyApp DB password"
 }
+data "aws_eks_cluster" "this" {
+  name = module.eks.cluster_name
+}
 
+data "aws_eks_cluster_auth" "this" {
+  name = module.eks.cluster_name
+}
 
 module "node_group" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks-nodegroups?ref=master"
