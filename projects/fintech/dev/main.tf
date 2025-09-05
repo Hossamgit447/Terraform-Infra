@@ -56,3 +56,7 @@ module "node_group" {
   instance_types = var.node_group_instance_types
   env            = var.env
 }
+module "aws_auth" {
+  source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/aws_auth?ref=master"
+  node_role_arn = module.iam.eks_node_role   # same ARN you pass to node group
+}
