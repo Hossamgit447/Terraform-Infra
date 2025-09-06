@@ -43,7 +43,7 @@ data "aws_eks_cluster_auth" "this" {
   name = module.eks.cluster_name
   depends_on = [module.eks] 
 }
-
+/*
 module "node_group" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks-nodegroups?ref=master"
 
@@ -59,6 +59,7 @@ module "node_group" {
   env            = var.env
   depends_on = [ module.aws_auth ]
 }
+*/
 module "aws_auth" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/aws_auth?ref=master"
   node_role_arn = module.iam.eks_node_role   # same ARN you pass to node group
