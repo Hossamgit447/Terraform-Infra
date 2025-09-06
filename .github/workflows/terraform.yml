@@ -42,6 +42,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init 
+      
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+           --region us-east-1 \
+           --name dev-eks-cluster
 
       - name: Terraform Plan
         if: ${{ github.event.inputs.action == 'plan' }}
