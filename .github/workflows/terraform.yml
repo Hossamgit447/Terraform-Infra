@@ -57,9 +57,16 @@ jobs:
       - name: Install kubectl
         if: ${{ github.event.inputs.action == 'apply' }}
         run: |
-          curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-          chmod +x kubectl
-          sudo mv kubectl /usr/local/bin/
+         set -e
+         VERSION="$(curl -s https://dl.k8s.io/release/stable.txt)"
+         echo "Got Kubernetes version: $VERSION"
+         if [ -z "$VERSION" ]; then
+           echo "Failed to fetch stable.txt"
+           exit 1
+         fi
+         curl -LO "https://dl.k8s.io/release/${VERSION}/bin/linux/amd64/kubectl"
+         chmod +x kubectl
+         sudo mv kubectl /usr/local/bin/kubectl
 
       # Capture Terraform outputs (like cluster_name, region)
       - name: Capture Terraform outputs
