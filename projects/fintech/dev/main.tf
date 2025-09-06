@@ -57,6 +57,7 @@ module "node_group" {
 
   instance_types = var.node_group_instance_types
   env            = var.env
+  depends_on = [ module.aws_auth ]
 }
 module "aws_auth" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/aws_auth?ref=master"
