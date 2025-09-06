@@ -43,7 +43,7 @@ data "aws_eks_cluster_auth" "this" {
   name = module.eks.cluster_name
   depends_on = [module.eks] 
 }
-
+/*
 module "node_group" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks-nodegroups?ref=master"
 
