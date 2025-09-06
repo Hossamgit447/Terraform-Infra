@@ -28,6 +28,7 @@ module "eks" {
   cluster_role_arn   = module.iam.eks_cluster_role_arn
   public_subnet_ids  = module.network.public_subnet_ids
   private_subnet_ids = module.network.private_subnet_ids
+  security_group_ids = module.eks_sg.eks_sg_id
 }
 module "db_password_secret" {
   source      = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/secret_manger?ref=master"
@@ -43,7 +44,7 @@ data "aws_eks_cluster_auth" "this" {
   name = module.eks.cluster_name
   depends_on = [module.eks] 
 }
-/*
+
 module "node_group" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks-nodegroups?ref=master"
 
@@ -60,4 +61,6 @@ module "node_group" {
   depends_on = [ module.aws_auth ]
 }
 
-*/
+module "eks_sg" {
+  source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks_sg?ref=master"
+}
