@@ -59,14 +59,14 @@ module "node_group" {
   instance_types = var.node_group_instance_types
   env            = var.env
 }
-
+/*
 module "eks_sg" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks_sg?ref=master"
   env= var.env
   vpc_id=module.network.vpc_id
 }
 
-
+*/
 module "nat" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/nat?ref=master"
 
