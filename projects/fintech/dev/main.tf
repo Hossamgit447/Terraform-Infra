@@ -76,3 +76,13 @@ module "eks_sg" {
   env= var.env
   vpc_id=module.network.vpc_id
 }
+
+
+module "nat" {
+  source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks_sg?ref=master"
+
+  env                = var.env
+  vpc_id             = module.network.vpc_id
+  public_subnet_id   = module.network.public_subnet_ids # pick first public subnet
+  private_subnet_ids = module.network.private_subnet_ids
+}
