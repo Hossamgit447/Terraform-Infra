@@ -35,6 +35,6 @@ variable "node_group_max_size" {
 
 variable "node_group_instance_types" {
   type    = list(string)
-  default = ["t2.medium"]
+  default = ["t2.micro"]
 }
 
