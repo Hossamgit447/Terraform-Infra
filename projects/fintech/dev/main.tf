@@ -79,7 +79,7 @@ module "eks_sg" {
 
 
 module "nat" {
-  source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/eks_sg?ref=master"
+  source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/nat?ref=master"
 
   env                = var.env
   vpc_id             = module.network.vpc_id
