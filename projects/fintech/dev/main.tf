@@ -83,6 +83,6 @@ module "nat" {
 
   env                = var.env
   vpc_id             = module.network.vpc_id
-  public_subnet_id   = module.network.public_subnet_ids # pick first public subnet
+  public_subnet_ids   = module.network.public_subnet_ids # pick first public subnet
   private_subnet_ids = module.network.private_subnet_ids
 }
