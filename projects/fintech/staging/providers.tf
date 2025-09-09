@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket       = "hossam-prod-s3-statefile"
-    key          = "prod.tfstate"
-    region       = "us-east-1"
+    bucket = "hossam-prod-s3-statefile"
+    key    = "prod.tfstate"
+    region = "us-east-1"
   }
 
   required_version = ">= 1.8.0"
@@ -15,5 +15,14 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
+  region = var.aws_region
 }
+
+
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.this.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.this.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.this.token
+}
+
+
