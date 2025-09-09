@@ -78,7 +78,7 @@ module "nat" {
   private_subnet_ids = module.network.private_subnet_ids
 }
 
-module "aws_load_balancer_controller" {
+module "alb" {
   source = "git::https://github.com/Hossamgit447/terraform-modules.git//modules/alb?ref=master"
 
   env               = var.env
