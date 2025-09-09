@@ -83,5 +83,5 @@ module "aws_load_balancer_controller" {
 
   env               = var.env
   cluster_name      = module.eks.cluster_name
-  oidc_provider_arn = module.eks.oidc_provider_arn
+  oidc_provider_arn = module.alb.oidc_provider_arn
 }
